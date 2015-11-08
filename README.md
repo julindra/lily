@@ -6,6 +6,7 @@ Your daily diary
 
 ### Authors
 - Renhard Julindra
+- Bryan Abdullah Farras
 
 ### Feature
 -
