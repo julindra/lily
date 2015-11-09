@@ -9,7 +9,7 @@ Lily is a web to write a diary online. Users must be logged in to write a diary.
 ### Authors
 - Renhard Julindra
 - Bryan Abdullah Farras
-
+- Aprilianto Chayadi
 ### Feature
 -
 
