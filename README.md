@@ -12,7 +12,8 @@ Lily is a web to write a diary online. Users must be logged in to write a diary.
 - Aprilianto Chayadi
 
 ### Feature
--
+- Diary may contain images or text
+- Diary can be shared to public or private.
 
 ### Requirements
 -
