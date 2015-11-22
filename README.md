@@ -7,7 +7,8 @@ Lily is a web to write a diary online. Users must be logged in to write a diary.
 <img src="https://raw.githubusercontent.com/julindra/lily/master/lily.png" alt="lily logo" width="200px">
 
 ### TODO
--
+- Creating database
+- Designing the front-end
 
 ### Authors
 - Renhard Julindra
@@ -20,7 +21,3 @@ Lily is a web to write a diary online. Users must be logged in to write a diary.
 
 ### Server Requirements
 - PHP version 5.4 or newer is recommended.
-
-It should work on 5.2.4 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
