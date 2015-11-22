@@ -18,5 +18,9 @@ Lily is a web to write a diary online. Users must be logged in to write a diary.
 - Diary may contain images or text
 - Diary can be shared to public or private.
 
-### Requirements
--
+### Server Requirements
+- PHP version 5.4 or newer is recommended.
+
+It should work on 5.2.4 as well, but we strongly advise you NOT to run
+such old versions of PHP, because of potential security and performance
+issues, as well as missing features.
