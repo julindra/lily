@@ -1,0 +1,48 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	/* Margin bottom by footer height */
+	margin-bottom: 60px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #34495e;
+}
+
+.each-diary {
+	padding: 10px;
+}
+
+#header {
+	margin-top: 20px;
+}
+
+#logo {
+	height: 50px;
+}
+
+#brand-text {
+	font-size: 150px;
+}
+
+.navbar-nav li a {
+	line-height: 50px;
+}
+
+@media (max-width: 767px) {
+	#logo {
+		height: 30px;
+	}
+
+	.navbar-nav li a {
+		line-height: 40px;
+	}	
+}

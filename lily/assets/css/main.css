@@ -1,0 +1,39 @@
+body {
+	background: url("../img/Start-and-Decorate-a-Diary-Step-4.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#header {
+	margin-top: 20px;
+}
+
+#logo {
+	height: 80px;
+}
+
+#brand-text {
+	font-size: 150px;
+}
+
+.navbar {
+	background-color: transparent;
+	background: transparent;
+	border-color: transparent;
+}
+
+.navbar-nav li a {
+	line-height: 80px;
+}
+
+@media (max-width: 767px) {
+	#logo {
+		height: 30px;
+	}
+
+	.navbar-nav li a {
+		line-height: 40px;
+	}	
+}
