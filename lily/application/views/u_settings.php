@@ -64,6 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<button type="submit" class="btn btn-lg btn-success">Save</button>
 					</div>
 				</form>
+				<p>Note: Leave the password field if you just want to change your name.</p>
 			</div>
 		</div>
 		<br><br>

@@ -15,7 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				dataType: "html",
 				success: function(msg){
 					if(msg == 200) {
-						window.location.href = "http://local/lily/home/success";
+						$('#signupModalFooter').html('<p style="color:blue;">Success. You can login with your account now.</p>');
+						document.getElementById("signupForm").reset();
 					} else {
 						$('#signupModalFooter').html(msg);
 					}
@@ -36,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				dataType: "html",
 				success: function(msg){
 					if(msg == 200) {
-						window.location.href = "http://local/lily/dash/";
+						window.location.href = "<?php echo base_url(); ?>dash/";
 					} else if(msg == 404) {
 						$('#signinModalFooter').html("Invalid username or password");
 					} else {

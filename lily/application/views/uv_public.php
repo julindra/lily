@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ME <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">SETTINGS</a></li>
+							<li><a href="<?php echo base_url('home/settings'); ?>">SETTINGS</a></li>
 							<li><a href="<?php echo base_url('home/signout'); ?>">SIGN OUT</a></li>
 						</ul>
 					</li>
@@ -43,26 +43,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</nav>
 	<div class="container">
-		<h1 class="text-center"><?php echo $check->title; ?></h1>
-		<p class="text-center">By <?php echo $nama; ?></p>
-		<p class="text-center"><b><?php echo $check->feel; ?></b> - <?php echo date("d F Y", strtotime($check->date)). " " .$check->time; ?></p>
-		<div style="margin: 0 auto; width: 180px;">
-			<!-- AddToAny BEGIN -->
-			<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-				<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-				<a class="a2a_button_facebook"></a>
-				<a class="a2a_button_twitter"></a>
-				<a class="a2a_button_google_plus"></a>
-				<a class="a2a_button_line"></a>
+		<button type="button" class="btn btn-lg btn-info" onclick="downloadpdf();">Download PDF</button>
+		<div id="content">
+			<h1 class="text-center"><?php echo $check->title; ?></h1>
+			<p class="text-center">By <?php echo $nama; ?></p>
+			<p class="text-center"><b><?php echo $check->feel; ?></b> - <?php echo date("d F Y", strtotime($check->date)). " " .$check->time; ?></p>
+			<div style="margin: 0 auto; width: 180px;">
+				<!-- AddToAny BEGIN -->
+				<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+					<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+					<a class="a2a_button_facebook"></a>
+					<a class="a2a_button_twitter"></a>
+					<a class="a2a_button_google_plus"></a>
+					<a class="a2a_button_line"></a>
+				</div>
+				<!-- AddToAny END -->
 			</div>
-			<!-- AddToAny END -->
+			<br>
+			
+			<div id="diary">
+			<?php echo $check->diary; ?>
+			</div>
+			<br><br>
 		</div>
-		<br>
-		
-		<div id="diary">
-		<?php echo $check->diary; ?>
-		</div>
-		<br><br>
 	</div>
 	<footer class="footer">
 		<div class="container" style="padding-top: 10px;">
@@ -76,10 +79,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/bootstrap3-wysihtml5.all.min.js"></script>
 	<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+	<script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
 	<script>
-		$(document).ready(function() {
-			
-		});
+		function downloadpdf() {
+			var pdf = new jsPDF('p', 'pt', 'letter');
+        // source can be HTML-formatted string, or a reference
+        // to an actual DOM element from which the text will be scraped.
+        source = $('#content')[0];
+
+        // we support special element handlers. Register them with jQuery-style 
+        // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+        // There is no support for any other type of selectors 
+        // (class, of compound) at this time.
+        specialElementHandlers = {
+            // element with id of "bypass" - jQuery style selector
+            '#bypassme': function (element, renderer) {
+                // true = "handled elsewhere, bypass text extraction"
+                return true
+            }
+        };
+        margins = {
+        	top: 80,
+        	bottom: 60,
+        	left: 40,
+        	width: 522
+        };
+        // all coords and widths are in jsPDF instance's declared units
+        // 'inches' in this case
+        pdf.fromHTML(
+        source, // HTML string or DOM elem ref.
+        margins.left, // x coord
+        margins.top, { // y coord
+            'width': margins.width, // max width of content on PDF
+            'elementHandlers': specialElementHandlers
+        },
+
+        function (dispose) {
+            pdf.save('<?php echo $check->title; ?>.pdf');
+        }, margins);
+    }
 	</script>
 </body>
 </html>

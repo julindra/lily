@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="<?php echo base_url('/about'); ?>">ABOUT</a></li>
 					<li class="active"><a href="<?php echo base_url('/features'); ?>">FEATURES</a></li>
-					<li><a href="<?php echo base_url('base/explore'); ?>">EXPLORE</a></li>
+					<li><a href="<?php echo base_url('dash/explore'); ?>">EXPLORE</a></li>
 				</ul>
 			</div>
 		</div>

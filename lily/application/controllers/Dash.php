@@ -12,7 +12,7 @@ class Dash extends CI_Controller {
 	
 	public function index()
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			$data['my_name'] = $this->user_model->my_name($this->session->userdata('cur_id'));
 			$id = $this->session->userdata('cur_id');
 			if(!$this->diary_model->today_diary($id)) {
@@ -32,7 +32,7 @@ class Dash extends CI_Controller {
 
 	public function save()
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			$data['my_name'] = $this->user_model->my_name($this->session->userdata('cur_id'));
 			$id = $this->session->userdata('cur_id');
 			if(isset($_POST['save'])) {
@@ -58,7 +58,7 @@ class Dash extends CI_Controller {
 
 	public function update()
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			$id = $this->session->userdata('cur_id');
 			if($id_diary = $this->diary_model->update($id)) {
 				redirect('d/'.$id_diary, 'refresh');
@@ -70,7 +70,7 @@ class Dash extends CI_Controller {
 
 	public function my($index=NULL)
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			$data['my_name'] = $this->user_model->my_name($this->session->userdata('cur_id'));
 			$id = $this->session->userdata('cur_id');
 
@@ -95,7 +95,7 @@ class Dash extends CI_Controller {
 
 	public function explore($index=NULL) 
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			$id = $this->session->userdata('cur_id');
 
 			$config['base_url'] = base_url() . 'dash/explore/';

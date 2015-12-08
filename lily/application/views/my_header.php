@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ME <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">SETTINGS</a></li>
+							<li><a href="<?php echo base_url('home/settings'); ?>">SETTINGS</a></li>
 							<li><a href="<?php echo base_url('home/signout'); ?>">SIGN OUT</a></li>
 						</ul>
 					</li>

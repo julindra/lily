@@ -86,7 +86,7 @@ class Home extends CI_Controller {
 	                ->send()) {
 						echo 200;
 	                } else {
-	                	echo "Sorry. You can't reset your password.";
+	                	echo $this->email->print_debugger();
 	                }
 				} else {
 					echo 404;

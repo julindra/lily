@@ -16,7 +16,7 @@ class D extends CI_Controller {
 			redirect('', 'refresh');
 		}
 
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			$id = $this->session->userdata('cur_id');
 			if(!$this->diary_model->check_this($id_diary)) {
 				redirect('', 'refresh');
