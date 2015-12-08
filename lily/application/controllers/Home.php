@@ -11,7 +11,7 @@ class Home extends CI_Controller {
 	
 	public function index()
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			redirect('dash', 'refresh');
 		} else {
 			$this->load->view('header');
@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 
 	public function signup()
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			redirect('dash', 'refresh');
 		} else {
 			$this->form_validation->set_rules('txt_name', 'Name', 'required');
@@ -42,7 +42,7 @@ class Home extends CI_Controller {
 
 	public function signin()
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			redirect('dash', 'refresh');
 		} else {
 			$this->form_validation->set_rules('txt_email', 'Email', 'required|valid_email');
@@ -64,7 +64,7 @@ class Home extends CI_Controller {
 
 	public function forgot()
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			redirect('dash', 'refresh');
 		} else {
 			$this->form_validation->set_rules('txt_email', 'Email', 'required|valid_email');
@@ -97,7 +97,7 @@ class Home extends CI_Controller {
 
 	public function reset()
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			redirect('dash', 'refresh');
 		} else {
 			if(isset($_GET['restok']) && isset($_GET['resem']) && isset($_GET['ref'])) {
@@ -118,7 +118,7 @@ class Home extends CI_Controller {
 
 	public function resetpass()
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			redirect('', 'refresh');
 		} else {
 			$this->form_validation->set_rules('txt_pass_confirmation', 'Password', 'required|min_length[8]');
@@ -136,9 +136,31 @@ class Home extends CI_Controller {
 		}
 	}
 
+	public function settings() 
+	{
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
+			$this->form_validation->set_rules('txt_name', 'Name', 'required');
+			
+			$id = $this->session->userdata('cur_id');
+			$data['my_name'] = $this->user_model->my_name($id);
+
+			if($this->form_validation->run() == FALSE) {
+				$this->load->view('u_settings', $data);
+			} else {
+				if($this->user_model->settings($id)) {
+					redirect('home/settings', 'refresh');
+				} else {
+					echo 404;
+				}
+			}
+		} else {
+			redirect('', 'refresh');
+		}
+	}
+
 	public function signout()
 	{
-		if(!empty($this->session->userdata('cur_email')) && !empty($this->session->userdata('cur_id'))) {
+		if(($this->session->userdata('cur_email')) && ($this->session->userdata('cur_id'))) {
 			$this->session->unset_userdata('cur_email');
 			$this->session->unset_userdata('cur_id');
 			$this->session->sess_destroy();

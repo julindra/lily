@@ -58,6 +58,44 @@ class User_model extends CI_Model {
 		return false;
 	}
 
+	public function settings($id)
+	{
+		$pass_lama = $this->input->post('txt_pass_lama');
+		$pass_baru = $this->input->post('txt_pass_confirmation');
+		$pass_baru2 = $this->input->post('txt_pass');
+
+		if(hash("sha256", $pass_lama) == $this->my_pass($id)) {
+			if(!empty($pass_baru) && strlen($pass_baru) >= 8 && ($pass_baru2 == $pass_baru)) {
+				$data = array(
+					'name' => $this->input->post('txt_name'),
+					'password' => hash("sha256", $pass_baru)
+				);
+
+				$this->db->where('id', $id);
+				$this->db->update('users', $data);
+
+				return true;
+			} else {
+				$data = array(
+					'name' => $this->input->post('txt_name')
+				);
+
+				$this->db->where('id', $id);
+				$this->db->update('users', $data);
+
+				return true;
+			}
+		} else {
+			$data = array(
+				'name' => $this->input->post('txt_name')
+			);
+
+			$this->db->where('id', $id);
+			$this->db->update('users', $data);
+			return true;
+		}
+	}
+
 	public function forgot()
 	{
 		$email = $this->input->post('txt_email');
@@ -124,5 +162,16 @@ class User_model extends CI_Model {
 		$name = $row->name;
 
 		return $name;
+	}
+
+	public function my_pass($id)
+	{
+		$this->db->select('password');
+		$this->db->where('id', $id);
+		$query = $this->db->get('users');
+		$row = $query->row();
+		$pass = $row->password;
+
+		return $pass;
 	}
 }
