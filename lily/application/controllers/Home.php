@@ -76,7 +76,7 @@ class Home extends CI_Controller {
 					$this->load->library('email');
 
 					$subject = 'Reset your password';
-					$body = '<p><b>Hi, '. $forgot['name'] .'!</b></p><br>Click this <a href="'. base_url() .'reset/?restok='. $forgot['forgot_token'] .'&resem='. $forgot['email'] .'&ref=email">link</a> to reset your password.<br><br>Have a nice day!';	
+					$body = '<p><b>Hi, '. $forgot['name'] .'!</b></p><br>Click this <a href="'. base_url() .'home/reset/?restok='. $forgot['forgot_token'] .'&resem='. $forgot['email'] .'&ref=email">link</a> to reset your password.<br><br>Have a nice day!';	
 
 					if($this->email
 	                ->from('renhard.net@gmail.com', 'Lily Forgot Password')
@@ -86,7 +86,7 @@ class Home extends CI_Controller {
 	                ->send()) {
 						echo 200;
 	                } else {
-	                	echo $this->email->print_debugger();
+	                	echo 503;
 	                }
 				} else {
 					echo 404;

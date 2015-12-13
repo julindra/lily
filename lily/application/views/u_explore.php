@@ -45,37 +45,53 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="container">
 		<h1 class="text-center">Explore</h1>
 		<br>
-		<div class="row">
 		<?php
+		$count = 0;
+		$total = count($query);
 		foreach($query as $diary) {
+			if($count == 0 || $count % 4 == 0) {
 		?>
-			<a href="<?php echo base_url('d/'. $diary->id); ?>">
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 each-diary text-center">
-					<h1>
-					<?php
-					if($diary->feel == "Happy") { echo "&#128522;"; }
-						else if($diary->feel == "Excited") { echo "&#128515;"; }
-						else if($diary->feel == "Proud") { echo "&#128521;"; }
-						else if($diary->feel == "Sad") { echo "&#128557;"; }
-						else if($diary->feel == "Angry") { echo "&#128545;"; }
-						else if($diary->feel == "Afraid") { echo "&#128542;"; }
-						else if($diary->feel == "Lonely") { echo "&#128528;"; }
-						else if($diary->feel == "Sick") { echo "&#128567;"; }
-						else if($diary->feel == "Confused") { echo "&#128533;"; }
-						else if($diary->feel == "Bored") { echo "&#128576;"; }
-						else if($diary->feel == "Scared") { echo "&#128560;"; }
-						else if($diary->feel == "Disapointed") { echo "&#128549;"; }
-					?>
-					</h1>
-					<h6><?php echo substr($diary->title, 0, 50); ?></h6>
-					<p><?php echo date('d M Y', strtotime($diary->date)); ?><br><?php echo $diary->name; ?></p>
-				</div>
-			</a>
+			<div class="row">
 		<?php
+			}
+		?>			
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 each-diary text-center">
+					<div class="thumbnail">
+						<h1>
+						<?php
+						if($diary->feel == "Happy") { echo "&#128522;"; }
+							else if($diary->feel == "Excited") { echo "&#128515;"; }
+							else if($diary->feel == "Proud") { echo "&#128521;"; }
+							else if($diary->feel == "Sad") { echo "&#128557;"; }
+							else if($diary->feel == "Angry") { echo "&#128545;"; }
+							else if($diary->feel == "Afraid") { echo "&#128542;"; }
+							else if($diary->feel == "Lonely") { echo "&#128528;"; }
+							else if($diary->feel == "Sick") { echo "&#128567;"; }
+							else if($diary->feel == "Confused") { echo "&#128533;"; }
+							else if($diary->feel == "Bored") { echo "&#128576;"; }
+							else if($diary->feel == "Scared") { echo "&#128560;"; }
+							else if($diary->feel == "Disapointed") { echo "&#128549;"; }
+						?>
+						</h1>
+						<div class="caption">
+							<a href="<?php echo base_url('d/'. $diary->id); ?>"><p style="margin: 0;"><?php echo substr($diary->title, 0, 50); ?></p></a>
+							<p><?php echo $diary->name; ?><br><?php echo date('d M Y', strtotime($diary->date)); ?></p>
+						</div>
+					</div>
+				</div>
+		<?php
+			if(($count+1) % 4 == 0 || $count+1 == $total) {
+		?>
+			</div>
+		<?php
+			}
+			$count += 1;
 		}
 		?>
+		<br>
+		<div class="text-center">
+			<?php echo $paging; ?>
 		</div>
-		<?php echo $paging; ?>
 		<br><br>
 	</div>
 	<footer class="footer">
